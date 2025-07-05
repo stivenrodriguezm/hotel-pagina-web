@@ -1,0 +1,103 @@
+/* src/components/common/Footer.module.css */
+
+
+.footer {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 3rem 2rem;
+  font-family: 'Arial', sans-serif;
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footerColumn {
+  flex: 1; /* Cada columna toma el mismo espacio */
+  min-width: 250px; /* Ancho mínimo antes de que se apilen */
+  padding: 0 1rem;
+}
+
+.footerColumn h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #3498db; /* Línea azul para el título */
+  display: inline-block;
+}
+
+.contactInfo p {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  line-height: 1.6;
+}
+
+.quickLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quickLinks li {
+  margin-bottom: 0.8rem;
+}
+
+.quickLinks a {
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.quickLinks a:hover {
+  color: #3498db; /* Color de acento al pasar el ratón */
+  padding-left: 5px;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.socialIcons a {
+  color: #ecf0f1;
+  font-size: 1.8rem; /* Tamaño de los iconos */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.socialIcons a:hover {
+  color: #3498db;
+  transform: scale(1.1); /* Agrandar el icono al pasar el ratón */
+}
+
+.footerBottom {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #34495e; /* Separador */
+  font-size: 0.9rem;
+  color: #bdc3c7; /* Un gris más suave */
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 2rem 1rem;
+  }
+  .footerContainer {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+  .socialIcons {
+    justify-content: center;
+  }
+}

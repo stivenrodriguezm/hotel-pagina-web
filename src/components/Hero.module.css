@@ -1,0 +1,107 @@
+/* ==================== src/components/Hero.module.css ==================== */
+
+.hero {
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  color: white;
+  background-image: url('https://res.cloudinary.com/dgn1mpqsc/image/upload/v1751662642/DSC04616_gdzm3u.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Efecto parallax para escritorio */
+}
+
+/* Capa oscura para mejorar la legibilidad del texto */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Negro con 50% de opacidad */
+  z-index: 1;
+}
+
+/* Contenedor del contenido para que esté por encima de la capa oscura */
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 1300px;
+  width: 90%;
+  padding: 0 1rem;
+  animation: fadeIn 2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroTitle {
+  font-size: 3.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  max-width: 900px;
+  margin-top: 70px;
+}
+
+.heroSubtitle {
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MODIFICADO: Media query mejorada para tablets y móviles */
+@media (max-width: 768px) {
+  /* Previene problemas de rendimiento y zoom en móviles */
+  .hero {
+    background-attachment: scroll;
+  }
+  
+  .heroContent {
+    /* Permite que el formulario de reserva se estire al 100% del ancho */
+    align-items: stretch;
+    padding: 0 1.5rem; /* Un poco más de espacio lateral */
+  }
+
+  .heroTitle {
+    font-size: 2.5rem; /* Tamaño más adecuado para móviles */
+    margin-top: 100px; /* Espacio para el header y un respiro */
+  }
+
+  .heroSubtitle {
+    font-size: 1.2rem; /* Subtítulo más pequeño */
+    margin-bottom: 2rem;
+  }
+}
+
+/* NUEVO: Media query para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 2rem; /* Aún más pequeño para celulares */
+  }
+
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+}

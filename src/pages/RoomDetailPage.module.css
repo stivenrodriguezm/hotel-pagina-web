@@ -1,0 +1,249 @@
+/* ==================== src/pages/RoomDetailPage.module.css ==================== */
+
+.pageContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-top: 120px;
+  background-color: #fff;
+}
+
+.galleryContainer {
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.mainImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.gallerySlide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.gallerySlide.active {
+  opacity: 1;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.navArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navArrow:hover {
+  background-color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prevArrow {
+  left: 15px;
+}
+
+.nextArrow {
+  right: 15px;
+}
+
+.thumbnailContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.thumbnailWrapper {
+  width: 100px;
+  height: 75px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.thumbnailWrapper.active {
+  border-color: #007bff;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.roomContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.detailsWrapper {
+  padding-top: 1rem;
+}
+
+.roomName {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #343a40;
+  margin-bottom: 1.5rem;
+}
+
+.roomDescription {
+  font-size: 1.1rem;
+  color: #6c757d;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.amenitiesSection {
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.amenitiesTitle {
+  font-size: 1.8rem;
+  color: #343a40;
+  margin-bottom: 1.5rem;
+}
+
+.amenitiesList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.amenityItem {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.amenityIcon {
+  color: #28a745;
+  font-size: 1.2rem;
+}
+
+.priceAndButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.roomPrice {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.priceLabel {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6c757d;
+  display: block;
+}
+
+.bookingButton {
+  padding: 0.8rem 2rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.bookingButton:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.notFound {
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.notFound h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.backLink {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .pageContainer {
+    padding: 1.5rem 1rem;
+    padding-top: 100px;
+  }
+  .roomName {
+    font-size: 2rem;
+  }
+  .amenitiesTitle {
+    font-size: 1.5rem;
+  }
+  .priceAndButton {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .bookingButton {
+    width: 100%;
+    text-align: center;
+  }
+  .amenitiesList {
+    grid-template-columns: 1fr;
+  }
+}

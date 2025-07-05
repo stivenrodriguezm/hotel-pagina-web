@@ -1,0 +1,94 @@
+/* ==================== src/components/BookingForm.module.css ==================== */
+
+.bookingForm {
+    background-color: rgba(10, 25, 47, 0.7);
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 1200px;
+    flex-wrap: wrap; 
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: #fff;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 160px;
+}
+
+.formGroup label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.formInput,
+.formSelect {
+    padding: 0.8rem;
+    border: 1px solid #555;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Lato', sans-serif;
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+}
+
+.formInput[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.submitButton {
+    padding: 0.8rem 2rem;
+    flex-shrink: 0;
+    height: 50.4px;
+}
+
+/* --- Media query para pantallas de menos de 768px --- */
+@media (max-width: 768px) {
+    .bookingForm {
+        flex-direction: column;
+        align-items: stretch;
+        /* MODIFICADO: Reducido el espacio y el padding */
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    .formGroup {
+        width: 100%; 
+    }
+
+    /* NUEVO: Reducir tamaño de la etiqueta en móvil */
+    .formGroup label {
+        font-size: 0.8rem;
+    }
+    
+    /* NUEVO: Reducir tamaño de campos de entrada en móvil */
+    .formInput,
+    .formSelect {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+
+    .submitButton {
+        width: 100%;
+        height: auto;
+        margin-top: 0.5rem; /* Margen reducido */
+        /* MODIFICADO: Padding y font-size del botón */
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+}

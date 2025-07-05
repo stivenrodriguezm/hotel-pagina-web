@@ -1,0 +1,14 @@
+/* src/components/common/AnimatedSection.css */
+
+/* Estilo base para la sección animada (oculta por defecto) */
+.animated-section {
+  opacity: 0;
+  transform: translateY(50px); /* Comienza 50px más abajo */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Clase que se añade cuando la sección es visible */
+.animated-section.is-visible {
+  opacity: 1;
+  transform: translateY(0); /* Vuelve a su posición original */
+}

@@ -1,0 +1,26 @@
+/* src/pages/RoomDetailPage.module.css */
+
+.pageContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-top: 120px; /* AÑADIDO: Espacio para el header fijo */
+  background-color: #fff;
+}
+
+.pageTitle {
+    font-size: 2.8rem;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #6c757d;
+}
+
+.content p {
+    margin-bottom: 1.5rem;
+}

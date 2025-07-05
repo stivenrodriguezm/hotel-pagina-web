@@ -1,0 +1,99 @@
+/* ==================== src/components/LocationSection.module.css ==================== */
+
+.locationSection {
+  padding: 4rem 2rem;
+  background-color: #ffffff;
+}
+
+.contentWrapper {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  align-items: center;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.textContainer {
+  padding-right: 2rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #343a40;
+  line-height: 1.2;
+}
+
+.sectionText {
+  font-size: 1.1rem;
+  color: #6c757d;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.poiList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.poiItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.poiIcon {
+  color: #007bff;
+  font-size: 1.5rem;
+}
+
+.mapContainer {
+  height: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.mapIframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 992px) {
+  .contentWrapper {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .textContainer {
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .poiItem {
+    justify-content: center;
+  }
+  
+  .mapContainer {
+    height: 400px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .locationSection {
+    padding: 2rem 1rem;
+  }
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  .mapContainer {
+    height: 300px;
+  }
+}
