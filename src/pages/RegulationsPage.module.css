@@ -1,26 +1,76 @@
-/* src/pages/RoomDetailPage.module.css */
+/* ==================== src/pages/RegulationsPage.module.css (ACTUALIZADO) ==================== */
 
 .pageContainer {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
-  padding-top: 120px; /* AÑADIDO: Espacio para el header fijo */
-  background-color: #fff;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    padding-top: 120px;
 }
 
 .pageTitle {
     font-size: 2.8rem;
     color: #343a40;
     text-align: center;
-    margin-bottom: 2rem;
+    /* MODIFICADO: Se reduce el margen inferior para acercar el nuevo texto */
+    margin-bottom: 1rem; 
 }
 
-.content {
-    font-size: 1.1rem;
-    line-height: 1.7;
+/* NUEVO: Estilos para la fecha de actualización */
+.lastUpdated {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-style: italic;
     color: #6c757d;
 }
 
-.content p {
-    margin-bottom: 1.5rem;
+.pdfContainer {
+    height: 75vh;
+    max-height: 800px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border: 1px solid #e0e0e0;
+}
+
+.pdfEmbed {
+    width: 100%;
+    height: 100%;
+}
+
+.downloadLinkContainer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.downloadLinkContainer a {
+    color: var(--primary-action-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.downloadLinkContainer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .pageContainer {
+        padding: 1rem;
+        padding-top: 100px;
+    }
+
+    .pageTitle {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .lastUpdated {
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+    }
+
+    .pdfContainer {
+        height: 70vh;
+    }
 }

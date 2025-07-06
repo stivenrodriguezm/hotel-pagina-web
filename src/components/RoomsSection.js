@@ -1,4 +1,5 @@
-// src/components/RoomsSection.js
+// ==================== src/components/RoomsSection.js (CORREGIDO) ====================
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './RoomsSection.module.css';
@@ -10,18 +11,21 @@ const RoomsSection = () => {
 
   return (
     <section className={styles.roomsSection}>
+      {/* El título y subtítulo pueden aparecer juntos */}
       <AnimatedSection>
         <h2 className={styles.sectionTitle}>Nuestras Habitaciones</h2>
-      </AnimatedSection>
-      <AnimatedSection>
         <p className={styles.sectionSubtitle}>
           Espacios diseñados para tu confort y descanso. Elige la opción perfecta para ti.
         </p>
       </AnimatedSection>
-      <AnimatedSection>
-        <div className={styles.cardsContainer}>
-          {featuredRooms.map((room) => (
-            <div key={room.id} className={styles.roomCard}>
+
+      {/* MODIFICADO: Se elimina el <AnimatedSection> que envolvía a cardsContainer */}
+      <div className={styles.cardsContainer}>
+        {featuredRooms.map((room) => (
+          // NUEVO: Se añade <AnimatedSection> aquí para envolver CADA tarjeta.
+          // Usamos el room.id como key para la animación.
+          <AnimatedSection key={room.id}>
+            <div className={styles.roomCard}>
               <img
                 src={room.imageUrl}
                 alt={`[Imagen de ${room.name}]`}
@@ -31,19 +35,18 @@ const RoomsSection = () => {
               <div className={styles.cardContent}>
                 <h3 className={styles.cardTitle}>{room.name}</h3>
                 <p className={styles.cardDescription}>{room.description}</p>
-                {/* Aplicando las nuevas clases al botón de la tarjeta */}
                 <Link to={`/habitaciones/${room.id}`} className={`btn btn-brand ${styles.cardButton}`}>
                   Ver Detalles
                 </Link>
               </div>
             </div>
-          ))}
-        </div>
-      </AnimatedSection>
+          </AnimatedSection>
+        ))}
+      </div>
 
+      {/* El botón ya estaba correctamente envuelto, así que se mantiene igual */}
       <AnimatedSection>
         <div className={styles.viewAllContainer}>
-           {/* Aplicando las nuevas clases al botón 'Ver todas' */}
           <Link to="/habitaciones" className="btn btn-brand">
             Ver todas las habitaciones
           </Link>

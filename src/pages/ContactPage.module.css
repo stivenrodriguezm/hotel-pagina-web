@@ -1,130 +1,145 @@
-/* ==================== src/pages/ContactPage.module.css ==================== */
+/* ==================== src/pages/ContactPage.module.css (ACTUALIZADO) ==================== */
 
 .pageContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  padding-top: 120px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    padding-top: 120px;
 }
 
 .pageTitle {
-  text-align: center;
-  font-size: 2.8rem;
-  margin-bottom: 4rem;
-  color: #343a40;
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 4rem;
+    color: #343a40;
 }
 
 .contentWrapper {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 4rem;
-  align-items: start;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: start;
 }
 
 .infoContainer {
-  background-color: #f8f9fa;
-  padding: 2rem;
-  border-radius: 10px;
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
 }
 
 .infoContainer h3 {
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
-  color: #343a40;
-  border-bottom: 2px solid #007bff;
-  padding-bottom: 0.5rem;
-  display: inline-block;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #343a40;
+    border-bottom: 2px solid var(--primary-action-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
 }
 
 .infoItem {
-  display: flex;
-  align-items: start;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  font-size: 1.1rem;
-  color: #6c757d;
+    display: flex;
+    align-items: start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #6c757d;
 }
 
 .infoIcon {
-  font-size: 1.5rem;
-  color: #007bff;
-  margin-top: 4px;
+    font-size: 1.5rem;
+    color: var(--primary-action-color);
+    margin-top: 4px;
 }
 
 .formContainer {
-  padding: 0 1rem;
+    padding: 0 1rem;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .formGroup {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .formGroup label {
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  color: #495057;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #495057;
 }
 
 .formInput,
-.formTextarea {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  border: 1px solid #ced4da;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-family: 'Lato', sans-serif;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+.formTextarea,
+.formSelect {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Lato', sans-serif;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: #fff;
+    /* MODIFICADO: Se establece el color por defecto a negro */
+    color: var(--text-dark);
+}
+
+/* NUEVO: Cuando el select está en su estado inicial (inválido), el texto es gris */
+.formSelect:invalid {
+  color: #6c757d;
+}
+
+/* NUEVO: Se asegura que las opciones desplegables siempre sean negras */
+.formSelect option {
+  color: var(--text-dark);
 }
 
 .formInput:focus,
-.formTextarea:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+.formTextarea:focus,
+.formSelect:focus {
+    outline: none;
+    border-color: var(--primary-action-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
 .formTextarea {
-  min-height: 150px;
-  resize: vertical;
+    min-height: 150px;
+    resize: vertical;
 }
 
 .submitButton {
-  padding: 0.8rem 2rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1.1rem;
-  transition: background-color 0.3s ease;
-  align-self: flex-start;
+    padding: 0.8rem 2rem;
+    background-color: var(--primary-action-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
 }
 
 .submitButton:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 @media (max-width: 992px) {
-  .contentWrapper {
-    grid-template-columns: 1fr;
-  }
+    .contentWrapper {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
-  .pageContainer {
-    padding: 1.5rem 1rem;
-    padding-top: 100px;
-  }
-  .pageTitle {
-    font-size: 2.2rem;
-    margin-bottom: 2rem;
-  }
+    .pageContainer {
+        padding: 1.5rem 1rem;
+        padding-top: 100px;
+    }
+    .pageTitle {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
 }

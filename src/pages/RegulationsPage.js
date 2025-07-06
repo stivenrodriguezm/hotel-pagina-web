@@ -1,20 +1,33 @@
-// src/pages/RegulationsPage.js
+// ==================== src/pages/RegulationsPage.js (ACTUALIZADO) ====================
+
 import React from 'react';
 import styles from './RegulationsPage.module.css';
+import pdfFile from '../assets/RIT.pdf';
 
 const RegulationsPage = () => {
   return (
     <div className={styles.pageContainer}>
       <h1 className={styles.pageTitle}>Reglamento Interno de Trabajo</h1>
-      <div className={styles.content}>
+      
+      {/* NUEVO: Texto de la fecha de actualización */}
+      <p className={styles.lastUpdated}>
+        Ultima actualización el 6 de julio del 2025
+      </p>
+      
+      <div className={styles.pdfContainer}>
+        <embed 
+          src={pdfFile} 
+          type="application/pdf" 
+          className={styles.pdfEmbed}
+        />
+      </div>
+      
+      <div className={styles.downloadLinkContainer}>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.
-        </p>
-        <p>
-          Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales.
-        </p>
-        <p>
-          Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam. Proin magns.
+          Si no puedes ver el documento, puedes&nbsp;
+          <a href={pdfFile} download="Reglamento_Interno_Hotel_Fontana.pdf">
+            descargarlo aquí
+          </a>.
         </p>
       </div>
     </div>

@@ -1,17 +1,18 @@
-// src/App.js
+// ==================== src/App.js (ACTUALIZADO) ====================
+
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-// 1. Importar el nuevo componente
-import ScrollToTop from './components/common/ScrollToTop';
+// 1. IMPORTACIONES DE REACT-TOASTIFY
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// Importando los componentes estructurales
+import ScrollToTop from './components/common/ScrollToTop';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import FloatingWhatsApp from './components/common/FloatingWhatsApp';
 
-// Importando las páginas
 import HomePage from './pages/HomePage';
 import RoomsPage from './pages/RoomsPage';
 import RoomDetailPage from './pages/RoomDetailPage';
@@ -23,8 +24,6 @@ import NotFoundPage from './pages/NotFoundPage';
 function App() {
   return (
     <BrowserRouter>
-      {/* 2. Añadir el componente ScrollToTop aquí */}
-      {/* Debe estar dentro de BrowserRouter para que pueda usar el hook useLocation */}
       <ScrollToTop />
       
       <div className="app-container">
@@ -43,6 +42,20 @@ function App() {
         <Footer />
         <FloatingWhatsApp />
       </div>
+
+      {/* 2. AÑADIR EL CONTENEDOR DE NOTIFICACIONES AQUÍ */}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </BrowserRouter>
   );
 }

@@ -55,7 +55,7 @@ const RoomDetailPage = () => {
     );
   }
   
-  const phoneNumber = "573123456789";
+  const phoneNumber = "573222585951";
   const message = `Hola, estoy interesado en reservar la ${room.name}.`;
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
@@ -122,10 +122,6 @@ const RoomDetailPage = () => {
           </div>
 
           <div className={styles.priceAndButton}>
-            <div>
-              <span className={styles.roomPrice}>{formatPrice(room.price)}</span>
-              <span className={styles.priceLabel}>/ noche</span>
-            </div>
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={styles.bookingButton}>
               Reservar por WhatsApp
             </a>

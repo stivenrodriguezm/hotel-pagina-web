@@ -1,10 +1,12 @@
-// src/components/common/FloatingWhatsApp.js
+// ==================== src/components/common/FloatingWhatsApp.js (ACTUALIZADO) ====================
+
 import React from 'react';
 import styles from './FloatingWhatsApp.module.css';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const FloatingWhatsApp = () => {
-  const phoneNumber = "573123456789"; // Reemplaza con el número de WhatsApp del hotel
+  // MODIFICADO: Se actualiza el número de teléfono.
+  const phoneNumber = "573222585951"; 
   const message = "Hola, me gustaría obtener más información sobre las reservas.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
