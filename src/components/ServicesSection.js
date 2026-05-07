@@ -18,7 +18,7 @@ const ServicesSection = () => {
         <section className={styles.servicesSection}>
             {/* 1. El título se anima por separado */}
             <AnimatedSection>
-                <h2 className={styles.sectionTitle}>Nuestros Servicios</h2>
+                <h2 className={styles.sectionTitle}>Nuestras Comodidades</h2>
             </AnimatedSection>
             
             {/* 2. Cada tarjeta de servicio se anima individualmente */}
@@ -54,12 +54,12 @@ const ServicesSection = () => {
                     </AnimatedSection>
                     <AnimatedSection>
                         <p className={styles.detailsText}>
-                            Nuestro hotel brinda comodidades de primer nivel, como gimnasio, parqueadero privado y una sala de juntas para 20 personas, perfecta para eventos y reuniones. Disfruta de una estancia sin preocupaciones con recepción 24 horas, servicio de habitaciones, televisión por cable Directv y wifi de alta velocidad en todo el alojamiento.
+                            Nuestro hotel brinda comodidades de primer nivel, como zona de cardio, parqueadero privado y una sala de juntas para 20 personas, perfecta para tus eventos corporativos. Disfruta de una estancia sin preocupaciones con recepción 24 horas, señal DirecTv y wifi de alta velocidad en todo el alojamiento.
                         </p>
                     </AnimatedSection>
                     <AnimatedSection>
                         <p className={styles.detailsText}>
-                            Empieza tus días con un delicioso desayuno americano y disfruta de una vista panorámica de la ciudad. Estamos cerca de lugares emblemáticos como la Plaza de Bolívar, Monserrate, el centro histórico (a 5.1 km), el Estadio El Campín y Movistar Arena (a 4.5 km), la Embajada Americana (a 0.8 km), y el centro comercial Gran Estación (a 2.7 km). El Aeropuerto Internacional de El Dorado se encuentra a solo 8 km de distancia.
+                            Empieza tus días con un delicioso desayuno y disfruta de una vista panorámica de la ciudad. Estamos cerca de lugares emblemáticos como la Plaza de Bolívar, Monserrate, el centro histórico (a 5.1 km), el Estadio El Campín y Movistar Arena (a 4.5 km), la Embajada Americana (a 0.8 km), y el centro comercial Gran Estación (a 2.7 km). El Aeropuerto Internacional de El Dorado se encuentra a solo 8 km de distancia.
                         </p>
                     </AnimatedSection>
                     <AnimatedSection>
@@ -70,8 +70,8 @@ const ServicesSection = () => {
                     <br />
                     {/* 5. El botón final también se anima por separado */}
                     <AnimatedSection>
-                        <Link to="/servicios" className={styles.detailsButton}>
-                            Ver todos nuestros servicios
+                        <Link to="/comodidades" className={styles.detailsButton}>
+                            Ver todas nuestras comodidades
                         </Link>
                     </AnimatedSection>
                 </div>

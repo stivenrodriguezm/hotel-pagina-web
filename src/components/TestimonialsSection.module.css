@@ -99,3 +99,15 @@
     padding: 1.5rem;
   }
 }
+
+.bookingLink {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.bookingLink:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}

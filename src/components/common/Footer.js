@@ -8,9 +8,10 @@ const Footer = () => {
   const quickLinks = [
     { title: 'Inicio', path: '/' },
     { title: 'Habitaciones', path: '/habitaciones' },
-    { title: 'Servicios', path: '/servicios' },
+    { title: 'Comodidades', path: '/comodidades' },
     { title: 'Contacto', path: '/contacto' },
-    { title: 'Reglamento Interno', path: '/reglamento-interno' }, // Enlace añadido
+    { title: 'Reglamento Interno', path: '/reglamento-interno' },
+    { title: 'Reserva por Booking', path: 'https://www.booking.com/hotel/co/fontana-bogota.es.html', external: true },
   ];
 
   const socialLinks = [
@@ -24,15 +25,16 @@ const Footer = () => {
           <h3>Hotel Fontana</h3>
           <p>
             <FaMapMarkerAlt />
-            Cra. 37 #24-25, Bogotá, Colombia
+            AK 40 #22B-27 barrio quinta paredes, Bogota
           </p>
           <p>
             <FaPhone />
-            +57 (601) 123-4567
+            601 300 1074 / 601 466 1745 <br />
+            WhatsApp: 322 258 5951
           </p>
           <p>
             <FaEnvelope />
-            reservas@hotelfontanabogota.com
+            recepcion@fontanabogota.com
           </p>
         </div>
 
@@ -41,8 +43,11 @@ const Footer = () => {
           <ul className={styles.quickLinks}>
             {quickLinks.map(link => (
               <li key={link.title}>
-                {/* Usando Link en lugar de <a> */}
-                <Link to={link.path}>{link.title}</Link>
+                {link.external ? (
+                  <a href={link.path} target="_blank" rel="noopener noreferrer">{link.title}</a>
+                ) : (
+                  <Link to={link.path}>{link.title}</Link>
+                )}
               </li>
             ))}
           </ul>

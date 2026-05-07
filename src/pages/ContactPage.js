@@ -1,7 +1,6 @@
 // ==================== src/pages/ContactPage.js (ACTUALIZADO) ====================
 
 import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
 import styles from './ContactPage.module.css';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
 import AnimatedSection from '../components/common/AnimatedSection';
@@ -11,49 +10,59 @@ const ContactPage = () => {
     const contactInfo = [
         {
             icon: <FaMapMarkerAlt className={styles.infoIcon} />,
-            text: 'Cra. 37 #24-25, Bogotá, Colombia',
+            text: 'AK 40 #22B-27 barrio quinta paredes, Bogota',
         },
         {
             icon: <FaPhone className={styles.infoIcon} />,
-            text: '+57 (601) 123-4567',
+            text: '601 300 1074 / 601 466 1745 | WA: 322 258 5951',
         },
         {
             icon: <FaEnvelope className={styles.infoIcon} />,
-            text: 'reservas@hotelfontanabogota.com',
+            text: 'recepcion@fontanabogota.com',
+        },
+        {
+            icon: <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Booking.com_logo.svg" alt="Booking.com" style={{ width: '24px', verticalAlign: 'middle' }} />,
+            text: <a href="https://www.booking.com/hotel/co/fontana-bogota.es.html" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Reserva por Booking.com</a>,
         },
     ];
 
-    // 1. AÑADIR ESTADO PARA EL CAMPO 'REASON'
     const [reason, setReason] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         setIsSubmitting(true);
 
         const form = event.target;
+        const formData = new FormData(form);
         
-        let templateId = '';
-        if (reason === 'pregunta') {
-            templateId = 'template_da65wrk';
-        } else {
-            templateId = 'template_i6nov8c';
-        }
+        // Convertimos FormData a un objeto simple para enviarlo vía JSON
+        const data = Object.fromEntries(formData.entries());
 
-        const serviceId = 'service_w2gim5e';
-        const publicKey = 'c6oUc6aaB0wguGlkm';
-
-        emailjs.sendForm(serviceId, templateId, form, publicKey)
-            .then((result) => {
-                toast.success('PQRS enviado exitosamente!');
-                form.reset();
-                setReason(''); // 2. REINICIAR EL ESTADO DESPUÉS DE ENVIAR
-            }, (error) => {
-                toast.error('Hubo un error, intenta nuevamente o envíanos un correo.');
-            })
-            .finally(() => {
-                setIsSubmitting(false);
+        try {
+            // Usamos formsubmit.co para enviar el correo directamente a recepción
+            const response = await fetch("https://formsubmit.co/ajax/recepcion@fontanabogota.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
             });
+
+            if (response.ok) {
+                toast.success('¡Mensaje enviado exitosamente!');
+                form.reset();
+                setReason('');
+            } else {
+                toast.error('Hubo un error al enviar el mensaje. Por favor intenta de nuevo.');
+            }
+        } catch (error) {
+            console.error("Error enviando el formulario:", error);
+            toast.error('Error de conexión. Intenta nuevamente o envíanos un correo directo.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -76,6 +85,10 @@ const ContactPage = () => {
                 <AnimatedSection>
                     <div className={styles.formContainer}>
                         <form className={styles.form} onSubmit={handleSubmit}>
+                            {/* Campos ocultos para FormSubmit */}
+                            <input type="hidden" name="_subject" value={`Nuevo contacto: ${reason || 'General'}`} />
+                            <input type="hidden" name="_template" value="table" />
+                            
                             <div className={styles.formGroup}>
                                 <label htmlFor="name">Nombre</label>
                                 <input type="text" id="name" name="name" className={styles.formInput} required />
@@ -87,20 +100,19 @@ const ContactPage = () => {
                             
                             <div className={styles.formGroup}>
                                 <label htmlFor="reason">Motivo de Contacto</label>
-                                {/* 3. CONECTAR EL SELECT AL ESTADO */}
                                 <select 
                                     id="reason" 
                                     name="reason" 
                                     className={styles.formSelect} 
-                                    value={reason} // El valor del select es controlado por el estado
-                                    onChange={(e) => setReason(e.target.value)} // Actualiza el estado al cambiar
+                                    value={reason} 
+                                    onChange={(e) => setReason(e.target.value)} 
                                     required
                                 >
                                     <option value="" disabled>-- Elige una opción --</option>
-                                    <option value="pregunta">Pregunta</option>
-                                    <option value="queja">Queja</option>
-                                    <option value="reclamo">Reclamo</option>
-                                    <option value="sugerencia">Sugerencia</option>
+                                    <option value="Pregunta">Pregunta</option>
+                                    <option value="Queja">Queja</option>
+                                    <option value="Reclamo">Reclamo</option>
+                                    <option value="Sugerencia">Sugerencia</option>
                                 </select>
                             </div>
                             

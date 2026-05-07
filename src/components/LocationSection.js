@@ -8,9 +8,13 @@ import AnimatedSection from './common/AnimatedSection';
 const LocationSection = () => {
     const pointsOfInterest = [
         'Corferias (Centro de Convenciones) - a 0.1 km',
+        'Ágora Bogotá (Centro de Convenciones) - a 0.5 km',
         'Embajada de Estados Unidos - a 0.8 km',
+        'Vive Claro - a 1.2 km',
         'Centro Comercial Gran Estación - a 2.7 km',
+        'Terminal de Transportes (Salitre) - a 3.5 km',
         'Estadio El Campín y Movistar Arena - a 4.5 km',
+        'Centro de Bogotá (Plaza de Bolívar) - a 5.1 km',
         'Aeropuerto El Dorado - a 8 km',
     ];
 

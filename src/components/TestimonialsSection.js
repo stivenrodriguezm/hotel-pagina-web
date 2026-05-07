@@ -43,7 +43,10 @@ const TestimonialsSection = () => {
             
             {/* 2. Subtítulo animado */}
             <AnimatedSection>
-                <p className={styles.mainSubtitle}>Basado en más de 700 comentarios reales</p>
+                <p className={styles.mainSubtitle}>
+                    Basado en más de 1000 comentarios reales en 
+                    <a href="https://www.booking.com/hotel/co/fontana-bogota.es.html" target="_blank" rel="noopener noreferrer" className={styles.bookingLink}> Booking.com</a>
+                </p>
             </AnimatedSection>
             
             {/* 3. Título de las tarjetas animado */}

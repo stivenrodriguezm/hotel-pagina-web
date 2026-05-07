@@ -33,7 +33,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/habitaciones" element={<RoomsPage />} />
             <Route path="/habitaciones/:id" element={<RoomDetailPage />} />
-            <Route path="/servicios" element={<ServicesPage />} />
+            <Route path="/comodidades" element={<ServicesPage />} />
             <Route path="/contacto" element={<ContactPage />} />
             <Route path="/reglamento-interno" element={<RegulationsPage />} />
             <Route path="*" element={<NotFoundPage />} />

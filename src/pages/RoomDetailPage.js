@@ -3,28 +3,29 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import roomsData from '../data/roomData';
 import styles from './RoomDetailPage.module.css';
-import { FaCheckCircle, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaCheckCircle, FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
+import BookingForm from '../components/BookingForm';
 
 const RoomDetailPage = () => {
   const { id } = useParams();
   const room = roomsData.find((r) => r.id === parseInt(id));
   
-  // Estado para manejar la imagen actual de la galería
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Reiniciar el índice si se cambia de habitación
   useEffect(() => {
     setCurrentIndex(0);
   }, [id]);
 
-  // --- Lógica de la Galería ---
-  const handlePrev = () => {
+  const handlePrev = (e) => {
+    if (e) e.stopPropagation();
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide ? room.imageUrls.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
 
-  const handleNext = () => {
+  const handleNext = (e) => {
+    if (e) e.stopPropagation();
     const isLastSlide = currentIndex === room.imageUrls.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
@@ -33,15 +34,24 @@ const RoomDetailPage = () => {
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
   };
-  // --- Fin de la Lógica de la Galería ---
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('es-CO', {
-      style: 'currency',
-      currency: 'COP',
-      minimumFractionDigits: 0,
-    }).format(price);
-  };
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        handlePrev();
+      } else if (e.key === 'ArrowRight') {
+        handleNext();
+      } else if (e.key === 'Escape' && isModalOpen) {
+        closeModal();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentIndex, isModalOpen, room]);
 
   if (!room) {
     return (
@@ -54,21 +64,18 @@ const RoomDetailPage = () => {
       </div>
     );
   }
-  
-  const phoneNumber = "573222585951";
-  const message = `Hola, estoy interesado en reservar la ${room.name}.`;
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (
     <div className={styles.pageContainer}>
-      {/* --- Nueva Galería Funcional --- */}
+      {/* --- Galería con Modal --- */}
       <div className={styles.galleryContainer}>
         <div className={styles.mainImageWrapper}>
-          {/* Mapea todas las imágenes para transiciones suaves, pero solo la activa es visible */}
           {room.imageUrls.map((url, index) => (
             <div
               key={index}
               className={`${styles.gallerySlide} ${index === currentIndex ? styles.active : ''}`}
+              onClick={openModal}
+              style={{ cursor: 'pointer' }}
             >
               <img
                 src={url}
@@ -121,13 +128,34 @@ const RoomDetailPage = () => {
             </ul>
           </div>
 
-          <div className={styles.priceAndButton}>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={styles.bookingButton}>
-              Reservar por WhatsApp
-            </a>
+          <div className={styles.bookingFormContainer}>
+            <h2 className={styles.bookingFormTitle}>Cotizar o Reservar</h2>
+            <BookingForm preSelectedRoom={room.name} />
           </div>
         </div>
       </div>
+
+      {/* --- Modal de la Galería --- */}
+      {isModalOpen && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
+          <div className={styles.modalImageWrapper} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeModalBtn} onClick={closeModal}>
+              <FaTimes />
+            </button>
+            <img
+              src={room.imageUrls[currentIndex]}
+              alt={`[Imagen ampliada de ${room.name}]`}
+              className={styles.modalImage}
+            />
+            <button className={`${styles.modalArrow} ${styles.modalPrevArrow}`} onClick={handlePrev}>
+              <FaChevronLeft />
+            </button>
+            <button className={`${styles.modalArrow} ${styles.modalNextArrow}`} onClick={handleNext}>
+              <FaChevronRight />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,8 +1,9 @@
 // src/components/BookingForm.js
 import React, { useState } from 'react';
 import styles from './BookingForm.module.css';
+import roomsData from '../data/roomData';
 
-const BookingForm = () => {
+const BookingForm = ({ preSelectedRoom }) => {
   const today = new Date().toISOString().split('T')[0];
   const tomorrowDate = new Date();
   tomorrowDate.setDate(tomorrowDate.getDate() + 1);
@@ -12,6 +13,13 @@ const BookingForm = () => {
   const [checkout, setCheckout] = useState(tomorrow);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
+  const [roomType, setRoomType] = useState(preSelectedRoom || roomsData[0]?.name || 'Habitación Estándar');
+
+  const formatDate = (dateStr) => {
+    const d = new Date(dateStr + 'T00:00:00');
+    const months = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    return `${d.getDate()}/${months[d.getMonth()]}/${d.getFullYear()}`;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,18 +29,11 @@ const BookingForm = () => {
       return;
     }
 
-    const baseUrl = 'https://www.booking.com/hotel/co/fontana-bogota.es.html';
-    const params = new URLSearchParams({
-      ss: 'Hotel Fontana Bogotá, Bogotá, Colombia',
-      checkin: checkin,
-      checkout: checkout,
-      group_adults: adults,
-      group_children: children,
-      no_rooms: 1,
-      req_adults: adults,
-      req_children: children,
-    });
-    const finalUrl = `${baseUrl}?${params.toString()}`;
+    const totalPersons = parseInt(adults) + parseInt(children);
+    
+    const message = `Buen día, me gustaría cotizar esta reserva: \n\nFecha entrada: ${formatDate(checkin)}\nFecha salida: ${formatDate(checkout)}\nPersonas: ${totalPersons}\nTipo de habitacion: ${roomType}\n\nCuentan con disponibilidad?`;
+
+    const finalUrl = `https://wa.me/573222585951?text=${encodeURIComponent(message)}`;
     window.open(finalUrl, '_blank', 'noopener,noreferrer');
   };
 
@@ -83,6 +84,20 @@ const BookingForm = () => {
           onChange={(e) => setChildren(e.target.value)}
           className={styles.formInput}
         />
+      </div>
+      <div className={styles.formGroup}>
+        <label htmlFor="roomType">Tipo de habitación</label>
+        <select
+          id="roomType"
+          value={roomType}
+          onChange={(e) => setRoomType(e.target.value)}
+          className={styles.formInput}
+        >
+          {roomsData.map(room => (
+            <option key={room.id} value={room.name}>{room.name}</option>
+          ))}
+          <option value="Cualquiera">Cualquiera / No estoy seguro</option>
+        </select>
       </div>
       <button type="submit" className={`btn btn-brand ${styles.submitButton}`}>
         Reservar

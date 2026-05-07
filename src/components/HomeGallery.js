@@ -1,20 +1,23 @@
 // src/components/HomeGallery.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './HomeGallery.module.css';
 import galleryData from '../data/galleryData';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
 import AnimatedSection from './common/AnimatedSection'; // Importar el componente de animación
 
 const HomeGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handlePrev = () => {
+  const handlePrev = (e) => {
+    if (e) e.stopPropagation();
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide ? galleryData.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
 
-  const handleNext = () => {
+  const handleNext = (e) => {
+    if (e) e.stopPropagation();
     const isLastSlide = currentIndex === galleryData.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
@@ -23,6 +26,24 @@ const HomeGallery = () => {
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
   };
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        handlePrev();
+      } else if (e.key === 'ArrowRight') {
+        handleNext();
+      } else if (e.key === 'Escape' && isModalOpen) {
+        closeModal();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentIndex, isModalOpen]);
 
   return (
     <section className={styles.gallerySection}>
@@ -36,6 +57,8 @@ const HomeGallery = () => {
               <div
                 key={image.id}
                 className={`${styles.gallerySlide} ${index === currentIndex ? styles.active : ''}`}
+                onClick={openModal}
+                style={{ cursor: 'pointer' }}
               >
                 <img
                   src={image.url}
@@ -70,6 +93,27 @@ const HomeGallery = () => {
           </div>
         </div>
       </AnimatedSection>
+      
+      {isModalOpen && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
+          <div className={styles.modalImageWrapper} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeModalBtn} onClick={closeModal}>
+              <FaTimes />
+            </button>
+            <img
+              src={galleryData[currentIndex].url}
+              alt={galleryData[currentIndex].alt}
+              className={styles.modalImage}
+            />
+            <button className={`${styles.modalArrow} ${styles.modalPrevArrow}`} onClick={handlePrev}>
+              <FaChevronLeft />
+            </button>
+            <button className={`${styles.modalArrow} ${styles.modalNextArrow}`} onClick={handleNext}>
+              <FaChevronRight />
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

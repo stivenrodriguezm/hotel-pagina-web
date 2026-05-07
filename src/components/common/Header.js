@@ -3,11 +3,10 @@
 import React, { useState, useEffect } from 'react'; // << LÍNEA CORREGIDA
 import { NavLink, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
-import { ReactComponent as Logo } from '../../assets/images/logo.svg';
+import { ReactComponent as Logo } from '../../assets/logo.svg';
 import { FaBars, FaTimes, FaHome, FaBed, FaConciergeBell, FaEnvelope } from 'react-icons/fa';
 
 const Header = () => {
-    const bookingUrl = `https://www.booking.com/hotel/co/fontana-bogota.es.html`;
     const location = useLocation();
     const isHomePage = location.pathname === '/';
 
@@ -57,7 +56,7 @@ const Header = () => {
     const navLinks = [
         { title: 'Inicio', path: '/', icon: <FaHome /> },
         { title: 'Habitaciones', path: '/habitaciones', icon: <FaBed /> },
-        { title: 'Servicios', path: '/servicios', icon: <FaConciergeBell /> },
+        { title: 'Comodidades', path: '/comodidades', icon: <FaConciergeBell /> },
         { title: 'Contacto', path: '/contacto', icon: <FaEnvelope /> },
     ];
 
@@ -97,7 +96,7 @@ const Header = () => {
                     </ul>
                 </nav>
 
-                <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={`btn btn-primary ${styles.bookingButton}`}>
+                <a href={`https://wa.me/573222585951?text=${encodeURIComponent("Hola, me gustaría obtener más información sobre las reservas.")}`} target="_blank" rel="noopener noreferrer" className={`btn btn-primary ${styles.bookingButton}`}>
                     Reserva Ahora
                 </a>
             </div>
